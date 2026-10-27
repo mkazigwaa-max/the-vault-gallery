@@ -32,7 +32,7 @@ h1 .dot{color:var(--green)}
 .chip{flex:0 0 auto;border:1.5px solid var(--brick);color:var(--brick);background:transparent;font-family:'Karla';font-weight:700;font-size:11px;letter-spacing:.08em;padding:4px 9px;cursor:pointer;text-transform:uppercase}
 .chip.on{background:var(--brick);color:var(--paper)}
 /* ===== the corridor: one endless horizontal walk ===== */
-#corridor{position:relative;overflow-x:auto;overflow-y:hidden;height:min(82vh,780px);min-height:500px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);cursor:grab;scroll-behavior:auto;user-select:none;-webkit-user-select:none;scrollbar-width:thin;touch-action:pan-y}
+#corridor{position:relative;overflow-x:auto;overflow-y:hidden;height:min(82vh,780px);min-height:500px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);cursor:grab;scroll-behavior:auto;user-select:none;-webkit-user-select:none;scrollbar-width:thin;touch-action:pan-y;-webkit-overflow-scrolling:touch}
 #corridor.grabbing{cursor:grabbing}
 #track{display:flex;height:100%;width:max-content}
 .copy{display:flex;height:100%}
@@ -56,10 +56,10 @@ section.room{flex:0 0 auto;height:100%;display:flex;flex-direction:column;positi
 .scalenote{flex:0 0 auto;font-size:12.5px;color:#5c5138;letter-spacing:.05em;padding:8px 30px 12px;max-width:100%;overflow-wrap:break-word;line-height:1.5}
 #hud{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:45;background:rgba(244,240,230,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(34,29,21,.25);border-radius:999px;padding:6px 15px;font-size:11.5px;letter-spacing:.12em;font-weight:700;color:var(--green);text-transform:uppercase;box-shadow:0 4px 14px rgba(34,29,21,.15);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis}
 /* piece view (overlay — opens from the corridor, returns to the same spot) */
-#piece{display:none;position:fixed;inset:0;z-index:60;background:var(--paper);overflow-y:auto;padding:0 22px 64px}
+#piece{display:none;position:fixed;inset:0;z-index:60;background:var(--paper);overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 22px 64px}
 #piece.open{display:block}
 .pwrap{max-width:1240px;margin:0 auto}
-.piece-top{position:sticky;top:0;z-index:20;background:var(--paper);padding-top:18px}
+.piece-top{padding-top:18px}
 .progress{font-size:12.5px;letter-spacing:.16em;font-weight:700;color:var(--green);text-transform:uppercase}
 .piece-top h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(30px,4.6vw,52px);line-height:1.04;margin:6px 0 2px}
 .piece-top .artist{font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#5c5138}
@@ -593,7 +593,8 @@ corridor.addEventListener('wheel',e=>{
   if(target==null)target=corridor.scrollLeft;
   target+=d*1.35; kick();
 },{passive:false});
-corridor.addEventListener('scroll',()=>{ if(!rafId) {recenter(); updateHUD();} },{passive:true});
+let scrollRaf=0;
+corridor.addEventListener('scroll',()=>{ if(!rafId&&!scrollRaf){ scrollRaf=requestAnimationFrame(()=>{scrollRaf=0; recenter(); updateHUD();}); } },{passive:true});
 document.addEventListener('keydown',e=>{
   if(cur)return;
   if(e.key==='ArrowRight'){ if(target==null)target=corridor.scrollLeft; target+=corridor.clientWidth*0.55; kick(); }
@@ -741,13 +742,9 @@ function closePiece(){
   document.addEventListener('dblclick',e=>{if(cur&&stage()&&stage().contains(e.target)){scale=scale>1.2?1:2.6; tx=0;ty=0; setT();}});
   document.addEventListener('click',e=>{const st=stage(); if(cur&&st&&st.contains(e.target)&&!e.target.classList.contains('hotspot')){st.querySelectorAll('.reveal').forEach(r=>r.remove());}});
   function img0h(){const st=stage(); return st? (st.dataset.baseh? +st.dataset.baseh : st.clientHeight) : 300;}
-  /* walk: pinned painting shrinks as the story scrolls (overlay scroll) */
-  $('#piece').addEventListener('scroll',()=>{
-    if(!cur)return;
-    const st=stage(); const y=$('#piece').scrollTop;
-    const base=img0h(); const h=Math.max(110, base - y*0.5);
-    st.style.height=h+'px';
-  },{passive:true});
+  /* owner order 2026-10-27 17:39 CT: the painting ROLLS with the page like
+     everything else — the pinned/shrinking-stage scroll handler is deleted,
+     not replaced. Nothing in the piece view is sticky or pinned. */
 })();
 /* stamp filter */
 let stampOn=null;
