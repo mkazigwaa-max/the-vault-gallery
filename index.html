@@ -11,70 +11,72 @@
 @font-face{font-family:'Karla';src:url('assets/Karla-700.woff2') format('woff2');font-weight:700}
 :root{--paper:#F4F0E6;--ink:#221D15;--green:#3E4C2B;--brick:#9C3A2B;--line:#cbbfa4;--mat:#FBF8F0;--wood:#2A2118}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:'Karla',Helvetica,Arial,sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font-family:'Karla',Helvetica,Arial,sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden;padding-bottom:56px}
 .wrap{max-width:1240px;margin:0 auto;padding:0 22px}
-header.mast{padding:22px 0 4px;border-bottom:3px solid var(--ink)}
+header.mast{padding:26px 0 10px;border-bottom:3px solid var(--ink)}
 .kicker{letter-spacing:.32em;font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase}
 h1{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-size:clamp(36px,5.8vw,66px);line-height:.98;margin:8px 0 4px}
 h1 .dot{color:var(--green)}
 .tagline{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:clamp(18px,2.4vw,23px)}
 .flag{margin:18px 0 2px;font-weight:700;letter-spacing:.14em;font-size:13px;color:var(--green);text-transform:uppercase}
-.intro{margin:12px 0 2px;font-size:16.5px;display:grid;grid-template-columns:1fr 1fr;gap:0 36px}
-.intro p{margin-bottom:8px}
-.doors{display:flex;flex-wrap:wrap;gap:10px 26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin:22px 0 6px;align-items:center}
+.intro{margin:14px 0 4px;font-size:16.5px;line-height:1.62;display:grid;grid-template-columns:1fr 1fr;gap:0 36px}
+.intro p{margin-bottom:10px}
+.doors{display:flex;flex-wrap:wrap;gap:10px 26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin:26px 0 10px;align-items:center}
+.doors a.standbtn{border:1.5px solid var(--green);border-radius:999px;padding:6px 14px;letter-spacing:.08em;background:rgba(62,76,43,.06);white-space:nowrap}
 .doors a{color:var(--green);font-weight:700;text-decoration:none;font-size:14.5px;letter-spacing:.05em}
 .doors a:hover{text-decoration:underline}
 .doors .walkbtn{margin-left:auto;background:var(--green);color:var(--paper);border:none;padding:7px 16px;font-family:'Karla';font-weight:700;font-size:14px;letter-spacing:.06em;cursor:pointer}
-.stampbar{display:flex;flex-wrap:nowrap;gap:7px;margin:10px 0 14px;align-items:center;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.stampbar{display:flex;flex-wrap:nowrap;gap:7px;margin:12px 0 18px;align-items:center;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .stampbar::-webkit-scrollbar{display:none}
 .stampbar .lbl{font-size:12px;letter-spacing:.18em;font-weight:700;color:#5c5138;margin-right:4px;flex:0 0 auto}
 .chip{flex:0 0 auto;border:1.5px solid var(--brick);color:var(--brick);background:transparent;font-family:'Karla';font-weight:700;font-size:11px;letter-spacing:.08em;padding:4px 9px;cursor:pointer;text-transform:uppercase}
 .chip.on{background:var(--brick);color:var(--paper)}
 /* ===== the corridor: one endless horizontal walk ===== */
-#corridor{position:relative;overflow-x:auto;overflow-y:hidden;height:min(82vh,780px);min-height:500px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);cursor:grab;scroll-behavior:auto;user-select:none;-webkit-user-select:none;scrollbar-width:thin}
+#corridor{position:relative;overflow-x:auto;overflow-y:hidden;height:min(82vh,780px);min-height:500px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);cursor:grab;scroll-behavior:auto;user-select:none;-webkit-user-select:none;scrollbar-width:thin;touch-action:pan-y}
 #corridor.grabbing{cursor:grabbing}
 #track{display:flex;height:100%;width:max-content}
 .copy{display:flex;height:100%}
 section.room{flex:0 0 auto;height:100%;display:flex;flex-direction:column;position:relative;border-right:1px solid var(--line);transition:background 1.2s ease}
-.roomhead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding:20px 30px 0}
+.roomhead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding:26px 30px 0}
 .roomno{font-family:'Playfair Display',serif;font-weight:900;font-size:15px;color:var(--green);letter-spacing:.2em}
 .roomhead h2{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(26px,3.6vw,38px)}
 .doorline{margin-left:auto;font-size:13.5px;color:#5c5138}
 .doorline a{color:var(--green);font-weight:700;text-decoration:none}
-.wall{flex:1 1 auto;display:flex;align-items:center;gap:34px;padding:26px 34px 48px;position:relative}
+.wall{flex:1 1 auto;display:flex;align-items:center;gap:34px;padding:26px 34px 66px;position:relative}
 .wall .hangline{position:absolute;left:0;right:0;top:50%;border-top:1px dashed rgba(92,81,56,.28)}
 .frame{flex:0 0 auto;position:relative;background:var(--wood);padding:9px;box-shadow:0 18px 34px rgba(34,29,21,.35),0 4px 10px rgba(34,29,21,.3);cursor:pointer;transition:opacity .8s ease,transform 1.4s cubic-bezier(.22,.8,.24,1)}
 .frame .mat{background:var(--mat);padding:7% 8%}
 .frame img{display:block;width:100%;height:auto;background:#ddd3ba}
 .frame:hover{transform:translateY(-4px)}
-.frame .stamp{position:absolute;top:-11px;right:-8px;transform:rotate(4deg);border:2px solid var(--brick);color:var(--brick);background:rgba(244,240,230,.92);font-weight:700;font-size:10px;letter-spacing:.1em;padding:3px 7px;text-transform:uppercase;z-index:3}
-.frame .cap{position:absolute;left:0;right:0;bottom:-32px;text-align:center;font-size:12.5px;color:#5c5138;letter-spacing:.04em;white-space:nowrap;overflow:hidden}
+.frame .stamp{position:absolute;top:6px;right:6px;transform:rotate(4deg);border:2px solid var(--brick);color:var(--brick);background:rgba(244,240,230,.92);font-weight:700;font-size:10px;letter-spacing:.1em;padding:3px 7px;text-transform:uppercase;z-index:3}
+.frame .cap{position:absolute;left:0;right:0;bottom:-38px;text-align:center;font-size:12.5px;color:#5c5138;letter-spacing:.04em;white-space:normal;line-height:1.35;padding:0 4px}
 .wall.dim .frame{opacity:.38}
 .wall.dim .frame.lit{opacity:1}
-.sil{flex:0 0 auto;align-self:flex-end;opacity:.5}
 .floorline{flex:0 0 auto;height:26px;border-top:2px solid #8a7c5c;background:linear-gradient(180deg,rgba(34,29,21,.16),rgba(34,29,21,0) 75%)}
-.scalenote{flex:0 0 auto;font-size:12.5px;color:#5c5138;letter-spacing:.05em;padding:8px 30px 12px}
-#hud{position:fixed;left:14px;bottom:14px;z-index:45;background:rgba(244,240,230,.95);border:1px solid var(--ink);padding:7px 13px;font-size:12.5px;letter-spacing:.14em;font-weight:700;color:var(--green);text-transform:uppercase;box-shadow:0 6px 18px rgba(34,29,21,.18)}
+.scalenote{flex:0 0 auto;font-size:12.5px;color:#5c5138;letter-spacing:.05em;padding:8px 30px 12px;max-width:100%;overflow-wrap:break-word;line-height:1.5}
+#hud{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:45;background:rgba(244,240,230,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(34,29,21,.25);border-radius:999px;padding:6px 15px;font-size:11.5px;letter-spacing:.12em;font-weight:700;color:var(--green);text-transform:uppercase;box-shadow:0 4px 14px rgba(34,29,21,.15);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis}
 /* piece view (overlay — opens from the corridor, returns to the same spot) */
-#piece{display:none;position:fixed;inset:0;z-index:60;background:var(--paper);overflow-y:auto;padding:0 22px 46px}
+#piece{display:none;position:fixed;inset:0;z-index:60;background:var(--paper);overflow-y:auto;padding:0 22px 64px}
 #piece.open{display:block}
 .pwrap{max-width:1240px;margin:0 auto}
-.piece-top{position:sticky;top:0;z-index:20;background:var(--paper);padding-top:14px}
+.piece-top{position:sticky;top:0;z-index:20;background:var(--paper);padding-top:18px}
 .progress{font-size:12.5px;letter-spacing:.16em;font-weight:700;color:var(--green);text-transform:uppercase}
 .piece-top h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(30px,4.6vw,52px);line-height:1.04;margin:6px 0 2px}
 .piece-top .artist{font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#5c5138}
-.stagewrap{position:relative;margin:16px 0 6px}
-.stage{position:relative;overflow:hidden;background:#14100B;border:1px solid var(--ink);height:56vh;min-height:320px;cursor:grab;touch-action:none}
+.stagewrap{position:relative;margin:20px 0 10px}
+.stage{position:relative;overflow:hidden;background:#14100B;border:1px solid var(--ink);height:56vh;min-height:320px;cursor:grab;touch-action:pan-y}
 .stage.grabbing{cursor:grabbing}
 .stage .zimg{position:absolute;left:0;top:0;width:100%;height:100%;display:block;transform-origin:50% 50%;user-select:none;-webkit-user-drag:none}
 .hotspot{position:absolute;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;border:2px solid var(--paper);background:rgba(62,76,43,.88);color:var(--paper);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;box-shadow:0 2px 8px rgba(0,0,0,.45)}
 .reveal{position:absolute;z-index:6;max-width:330px;background:var(--paper);border:1px solid var(--ink);border-left:4px solid var(--green);padding:12px 14px;font-size:14.5px;line-height:1.5;box-shadow:0 14px 30px rgba(0,0,0,.35);display:none}
 .reveal b{display:block;font-family:'Playfair Display',serif;font-size:16px;margin-bottom:3px}
 .reveal.show{display:block}
-.zoomctl{display:flex;gap:8px;margin:8px 0 0}
-.zoomctl button{border:1px solid var(--ink);background:var(--paper);font-family:'Karla';font-weight:700;padding:5px 13px;cursor:pointer;font-size:13.5px}
-.zoomhint{font-size:12.5px;color:#5c5138;margin-left:6px;align-self:center}
-.placards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:22px 0 6px}
+.zoompill{position:absolute;right:12px;bottom:12px;z-index:8;display:flex;align-items:center;gap:2px;height:34px;padding:0 6px;border-radius:999px;background:rgba(244,240,230,.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(34,29,21,.3);box-shadow:0 4px 14px rgba(34,29,21,.22)}
+.zoompill button{width:27px;height:27px;border:none;border-radius:50%;background:transparent;color:var(--ink);font-family:'Karla';font-weight:700;font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .16s ease}
+.zoompill button:hover,.zoompill button:active{background:rgba(62,76,43,.16)}
+.zoompill .zpct{font-size:12px;font-weight:700;letter-spacing:.03em;min-width:42px;text-align:center;color:var(--green)}
+.zoomhint{font-size:11px;color:#5c5138;margin-top:8px;line-height:1.45;max-width:100%}
+.placards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:28px 0 10px}
 .placard{border:1px solid var(--line);background:var(--mat);padding:18px 20px}
 .placard .pl-k{font-size:11px;letter-spacing:.22em;font-weight:700;color:#5c5138;text-transform:uppercase;margin-bottom:8px}
 .placard dl{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font-size:15px}
@@ -83,7 +85,7 @@ section.room{flex:0 0 auto;height:100%;display:flex;flex-direction:column;positi
 .placard .meta{font-size:13.5px;color:#5c5138;letter-spacing:.06em;margin-bottom:12px}
 .placard .readbtn{display:inline-block;background:var(--green);color:var(--paper);text-decoration:none;font-weight:700;padding:9px 18px;font-size:14.5px;letter-spacing:.05em}
 .placard .stampbig{display:inline-block;border:2px solid var(--brick);color:var(--brick);font-weight:700;font-size:11.5px;letter-spacing:.1em;padding:4px 9px;transform:rotate(-2deg);text-transform:uppercase}
-article.story{max-width:760px;margin:30px auto 0;font-size:18px;line-height:1.68}
+article.story{max-width:760px;margin:36px auto 0;font-size:18px;line-height:1.68}
 article.story p{margin-bottom:15px}
 article.story p.verdict{font-family:'Playfair Display',serif;font-style:italic;font-size:20.5px;line-height:1.5;border-left:3px solid var(--green);padding:4px 0 4px 16px;margin:22px 0}
 .nextdoor{max-width:760px;margin:34px auto 0;border-top:1px solid var(--line);padding-top:16px;font-size:16px}
@@ -99,19 +101,18 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
  header.mast{padding:14px 0 2px}
  .tagline{font-size:17px}
  .intro{grid-template-columns:1fr;font-size:15.5px}
- .intro p:nth-child(2){display:none}
  .doors{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
  .doors::-webkit-scrollbar{display:none}
  .doors a{flex:0 0 auto}
  .doors .walkbtn{margin-left:8px;flex:0 0 auto}
  #corridor{height:74vh;min-height:430px}
- .wall{gap:22px;padding:20px 18px 42px}
- .roomhead{padding:14px 18px 0}
+ .wall{gap:22px;padding:20px 18px 60px}
+ .roomhead{padding:18px 18px 0}
  .scalenote{padding:8px 18px 10px}
  .placards{grid-template-columns:1fr}
  .stage{height:44vh}
  article.story{font-size:17px}
- #hud{font-size:11px;left:8px;bottom:8px}
+ #hud{font-size:11px;bottom:10px;padding:5px 12px}
 }
 </style>
 </head>
@@ -129,6 +130,7 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <p>The rooms now run in one endless corridor — scroll, drag, or swipe and you walk it; it loops forever, the last room handing you back to the first. Or take <b>The Walk</b> — the guided route, piece 1 to 28, each story handing you to the next. The paintings' companion book stand is next door: <a href="https://mkazigwaa-max.github.io/the-vault-newsstand/">THE VAULT — Newsstand</a>.</p>
 </div>
 <nav class="doors">
+<a class="standbtn" href="https://mkazigwaa-max.github.io/the-vault-newsstand/">THE BOOK STAND — NEXT DOOR →</a>
 <a href="#room-1" data-room="1">Room 1 · The Sea &amp; The Sky</a>
 <a href="#room-2" data-room="2">Room 2 · Gold &amp; Theft</a>
 <a href="#room-3" data-room="3">Room 3 · Night &amp; Madness</a>
@@ -159,9 +161,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">18 · The Fighting Temeraire · J.M.W. Turner</div></div><div class="frame" data-n="20" data-room="1" data-wcm="63" data-stamp="NAMED BY AN INSULT" title="Impression, Sunrise">
 <div class="stamp">NAMED BY AN INSULT</div>
 <div class="mat"><img data-src="media/20-hero.jpg" width="3840" height="2159" style="aspect-ratio:3840/2159" alt="Impression, Sunrise — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">20 · Impression, Sunrise · Claude Monet</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">20 · Impression, Sunrise · Claude Monet</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 308 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 308 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="2" style="background:#F0E9D4">
 <div class="roomhead"><span class="roomno">ROOM 2</span><h2>Gold & Theft</h2><span class="doorline">Door to <a href="#room-3" data-room="3">Room 3 — Night & Madness</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="10" data-room="2" data-wcm="180" data-stamp="BOUGHT BEFORE IT WAS FINISHED" title="The Kiss">
@@ -179,9 +181,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">27 · The Arnolfini Portrait · Jan van Eyck</div></div><div class="frame" data-n="28" data-room="2" data-wcm="209.5" data-stamp="THE SKULL ONLY SHOWS SIDEWAYS" title="The Ambassadors">
 <div class="stamp">THE SKULL ONLY SHOWS SIDEWAYS</div>
 <div class="mat"><img data-src="media/28-hero.jpg" width="3840" height="2160" style="aspect-ratio:3840/2160" alt="The Ambassadors — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">28 · The Ambassadors · Hans Holbein the Younger</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">28 · The Ambassadors · Hans Holbein the Younger</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 209.5 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 209.5 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="3" style="background:#E4DFD2">
 <div class="roomhead"><span class="roomno">ROOM 3</span><h2>Night & Madness</h2><span class="doorline">Door to <a href="#room-4" data-room="4">Room 4 — Violence & Revenge</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="03" data-room="3" data-wcm="437" data-stamp="CUT DOWN TO FIT A DOOR" title="The Night Watch">
@@ -199,9 +201,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">16 · Ophelia · John Everett Millais</div></div><div class="frame" data-n="24" data-room="3" data-wcm="127" data-stamp="A PORTRAIT HIDES ON ITS BACK" title="The Nightmare">
 <div class="stamp">A PORTRAIT HIDES ON ITS BACK</div>
 <div class="mat"><img data-src="media/24-hero.jpg" width="3840" height="2160" style="aspect-ratio:3840/2160" alt="The Nightmare — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">24 · The Nightmare · Henry Fuseli</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">24 · The Nightmare · Henry Fuseli</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 437 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 437 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="4" style="background:#EFE7D8">
 <div class="roomhead"><span class="roomno">ROOM 4</span><h2>Violence & Revenge</h2><span class="doorline">Door to <a href="#room-5" data-room="5">Room 5 — Faces</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="11" data-room="4" data-wcm="716" data-stamp="15 LIVED. 147 BOARDED" title="The Raft of the Medusa">
@@ -222,9 +224,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">23 · The Execution of Lady Jane Grey · Paul Delaroche</div></div><div class="frame" data-n="25" data-room="4" data-wcm="128" data-stamp="PAINTED BY HIS FRIEND" title="The Death of Marat">
 <div class="stamp">PAINTED BY HIS FRIEND</div>
 <div class="mat"><img data-src="media/25-hero.jpg" width="3840" height="2159" style="aspect-ratio:3840/2159" alt="The Death of Marat — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">25 · The Death of Marat · Jacques-Louis David</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">25 · The Death of Marat · Jacques-Louis David</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 716 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 716 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="5" style="background:#F2EDE0">
 <div class="roomhead"><span class="roomno">ROOM 5</span><h2>Faces</h2><span class="doorline">The last room — the corridor loops back to <a href="#room-1" data-room="1">Room 1</a>. Walk on.</span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="04" data-room="5" data-wcm="276" data-stamp="THE KING IS WATCHING YOU" title="Las Meninas">
@@ -245,9 +247,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">19 · The Rokeby Venus · Diego Velázquez</div></div><div class="frame" data-n="26" data-room="5" data-wcm="66" data-stamp="HE DUG UP THE POEMS" title="Beata Beatrix">
 <div class="stamp">HE DUG UP THE POEMS</div>
 <div class="mat"><img data-src="media/26-hero.jpg" width="3840" height="2159" style="aspect-ratio:3840/2159" alt="Beata Beatrix — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">26 · Beata Beatrix · Dante Gabriel Rossetti</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">26 · Beata Beatrix · Dante Gabriel Rossetti</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 384.9 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 384.9 cm. Click a piece to approach it.</div>
 </section></div><div class="copy" data-copy="2"><section class="room" data-room="1" id="room-1" style="background:#ECE9DF">
 <div class="roomhead"><span class="roomno">ROOM 1</span><h2>The Sea & The Sky</h2><span class="doorline">Door to <a href="#room-2" data-room="2">Room 2 — Gold & Theft</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="01" data-room="1" data-wcm="37.8" data-stamp="SMALLER THAN A POSTER" title="The Great Wave Off Kanagawa">
@@ -268,9 +270,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">18 · The Fighting Temeraire · J.M.W. Turner</div></div><div class="frame" data-n="20" data-room="1" data-wcm="63" data-stamp="NAMED BY AN INSULT" title="Impression, Sunrise">
 <div class="stamp">NAMED BY AN INSULT</div>
 <div class="mat"><img data-src="media/20-hero.jpg" width="3840" height="2159" style="aspect-ratio:3840/2159" alt="Impression, Sunrise — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">20 · Impression, Sunrise · Claude Monet</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">20 · Impression, Sunrise · Claude Monet</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 308 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 308 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="2" id="room-2" style="background:#F0E9D4">
 <div class="roomhead"><span class="roomno">ROOM 2</span><h2>Gold & Theft</h2><span class="doorline">Door to <a href="#room-3" data-room="3">Room 3 — Night & Madness</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="10" data-room="2" data-wcm="180" data-stamp="BOUGHT BEFORE IT WAS FINISHED" title="The Kiss">
@@ -288,9 +290,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">27 · The Arnolfini Portrait · Jan van Eyck</div></div><div class="frame" data-n="28" data-room="2" data-wcm="209.5" data-stamp="THE SKULL ONLY SHOWS SIDEWAYS" title="The Ambassadors">
 <div class="stamp">THE SKULL ONLY SHOWS SIDEWAYS</div>
 <div class="mat"><img data-src="media/28-hero.jpg" width="3840" height="2160" style="aspect-ratio:3840/2160" alt="The Ambassadors — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">28 · The Ambassadors · Hans Holbein the Younger</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">28 · The Ambassadors · Hans Holbein the Younger</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 209.5 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 209.5 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="3" id="room-3" style="background:#E4DFD2">
 <div class="roomhead"><span class="roomno">ROOM 3</span><h2>Night & Madness</h2><span class="doorline">Door to <a href="#room-4" data-room="4">Room 4 — Violence & Revenge</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="03" data-room="3" data-wcm="437" data-stamp="CUT DOWN TO FIT A DOOR" title="The Night Watch">
@@ -308,9 +310,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">16 · Ophelia · John Everett Millais</div></div><div class="frame" data-n="24" data-room="3" data-wcm="127" data-stamp="A PORTRAIT HIDES ON ITS BACK" title="The Nightmare">
 <div class="stamp">A PORTRAIT HIDES ON ITS BACK</div>
 <div class="mat"><img data-src="media/24-hero.jpg" width="3840" height="2160" style="aspect-ratio:3840/2160" alt="The Nightmare — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">24 · The Nightmare · Henry Fuseli</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">24 · The Nightmare · Henry Fuseli</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 437 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 437 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="4" id="room-4" style="background:#EFE7D8">
 <div class="roomhead"><span class="roomno">ROOM 4</span><h2>Violence & Revenge</h2><span class="doorline">Door to <a href="#room-5" data-room="5">Room 5 — Faces</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="11" data-room="4" data-wcm="716" data-stamp="15 LIVED. 147 BOARDED" title="The Raft of the Medusa">
@@ -331,9 +333,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">23 · The Execution of Lady Jane Grey · Paul Delaroche</div></div><div class="frame" data-n="25" data-room="4" data-wcm="128" data-stamp="PAINTED BY HIS FRIEND" title="The Death of Marat">
 <div class="stamp">PAINTED BY HIS FRIEND</div>
 <div class="mat"><img data-src="media/25-hero.jpg" width="3840" height="2159" style="aspect-ratio:3840/2159" alt="The Death of Marat — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">25 · The Death of Marat · Jacques-Louis David</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">25 · The Death of Marat · Jacques-Louis David</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 716 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 716 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="5" id="room-5" style="background:#F2EDE0">
 <div class="roomhead"><span class="roomno">ROOM 5</span><h2>Faces</h2><span class="doorline">The last room — the corridor loops back to <a href="#room-1" data-room="1">Room 1</a>. Walk on.</span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="04" data-room="5" data-wcm="276" data-stamp="THE KING IS WATCHING YOU" title="Las Meninas">
@@ -354,9 +356,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">19 · The Rokeby Venus · Diego Velázquez</div></div><div class="frame" data-n="26" data-room="5" data-wcm="66" data-stamp="HE DUG UP THE POEMS" title="Beata Beatrix">
 <div class="stamp">HE DUG UP THE POEMS</div>
 <div class="mat"><img data-src="media/26-hero.jpg" width="3840" height="2159" style="aspect-ratio:3840/2159" alt="Beata Beatrix — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">26 · Beata Beatrix · Dante Gabriel Rossetti</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">26 · Beata Beatrix · Dante Gabriel Rossetti</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 384.9 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 384.9 cm. Click a piece to approach it.</div>
 </section></div><div class="copy" data-copy="3" aria-hidden="true"><section class="room" data-room="1" style="background:#ECE9DF">
 <div class="roomhead"><span class="roomno">ROOM 1</span><h2>The Sea & The Sky</h2><span class="doorline">Door to <a href="#room-2" data-room="2">Room 2 — Gold & Theft</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="01" data-room="1" data-wcm="37.8" data-stamp="SMALLER THAN A POSTER" title="The Great Wave Off Kanagawa">
@@ -377,9 +379,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">18 · The Fighting Temeraire · J.M.W. Turner</div></div><div class="frame" data-n="20" data-room="1" data-wcm="63" data-stamp="NAMED BY AN INSULT" title="Impression, Sunrise">
 <div class="stamp">NAMED BY AN INSULT</div>
 <div class="mat"><img data-src="media/20-hero.jpg" width="3840" height="2159" style="aspect-ratio:3840/2159" alt="Impression, Sunrise — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">20 · Impression, Sunrise · Claude Monet</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">20 · Impression, Sunrise · Claude Monet</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 308 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 308 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="2" style="background:#F0E9D4">
 <div class="roomhead"><span class="roomno">ROOM 2</span><h2>Gold & Theft</h2><span class="doorline">Door to <a href="#room-3" data-room="3">Room 3 — Night & Madness</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="10" data-room="2" data-wcm="180" data-stamp="BOUGHT BEFORE IT WAS FINISHED" title="The Kiss">
@@ -397,9 +399,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">27 · The Arnolfini Portrait · Jan van Eyck</div></div><div class="frame" data-n="28" data-room="2" data-wcm="209.5" data-stamp="THE SKULL ONLY SHOWS SIDEWAYS" title="The Ambassadors">
 <div class="stamp">THE SKULL ONLY SHOWS SIDEWAYS</div>
 <div class="mat"><img data-src="media/28-hero.jpg" width="3840" height="2160" style="aspect-ratio:3840/2160" alt="The Ambassadors — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">28 · The Ambassadors · Hans Holbein the Younger</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">28 · The Ambassadors · Hans Holbein the Younger</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 209.5 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 209.5 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="3" style="background:#E4DFD2">
 <div class="roomhead"><span class="roomno">ROOM 3</span><h2>Night & Madness</h2><span class="doorline">Door to <a href="#room-4" data-room="4">Room 4 — Violence & Revenge</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="03" data-room="3" data-wcm="437" data-stamp="CUT DOWN TO FIT A DOOR" title="The Night Watch">
@@ -417,9 +419,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">16 · Ophelia · John Everett Millais</div></div><div class="frame" data-n="24" data-room="3" data-wcm="127" data-stamp="A PORTRAIT HIDES ON ITS BACK" title="The Nightmare">
 <div class="stamp">A PORTRAIT HIDES ON ITS BACK</div>
 <div class="mat"><img data-src="media/24-hero.jpg" width="3840" height="2160" style="aspect-ratio:3840/2160" alt="The Nightmare — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">24 · The Nightmare · Henry Fuseli</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">24 · The Nightmare · Henry Fuseli</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 437 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 437 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="4" style="background:#EFE7D8">
 <div class="roomhead"><span class="roomno">ROOM 4</span><h2>Violence & Revenge</h2><span class="doorline">Door to <a href="#room-5" data-room="5">Room 5 — Faces</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="11" data-room="4" data-wcm="716" data-stamp="15 LIVED. 147 BOARDED" title="The Raft of the Medusa">
@@ -440,9 +442,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">23 · The Execution of Lady Jane Grey · Paul Delaroche</div></div><div class="frame" data-n="25" data-room="4" data-wcm="128" data-stamp="PAINTED BY HIS FRIEND" title="The Death of Marat">
 <div class="stamp">PAINTED BY HIS FRIEND</div>
 <div class="mat"><img data-src="media/25-hero.jpg" width="3840" height="2159" style="aspect-ratio:3840/2159" alt="The Death of Marat — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">25 · The Death of Marat · Jacques-Louis David</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">25 · The Death of Marat · Jacques-Louis David</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 716 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 716 cm. Click a piece to approach it.</div>
 </section><section class="room" data-room="5" style="background:#F2EDE0">
 <div class="roomhead"><span class="roomno">ROOM 5</span><h2>Faces</h2><span class="doorline">The last room — the corridor loops back to <a href="#room-1" data-room="1">Room 1</a>. Walk on.</span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="04" data-room="5" data-wcm="276" data-stamp="THE KING IS WATCHING YOU" title="Las Meninas">
@@ -463,11 +465,11 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">19 · The Rokeby Venus · Diego Velázquez</div></div><div class="frame" data-n="26" data-room="5" data-wcm="66" data-stamp="HE DUG UP THE POEMS" title="Beata Beatrix">
 <div class="stamp">HE DUG UP THE POEMS</div>
 <div class="mat"><img data-src="media/26-hero.jpg" width="3840" height="2159" style="aspect-ratio:3840/2159" alt="Beata Beatrix — horizontal hero" draggable="false" decoding="async"></div>
-<div class="cap">26 · Beata Beatrix · Dante Gabriel Rossetti</div></div><div class="sil"><svg viewBox="0 0 60 180" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="10" fill="#221D15"/><path d="M30 26 L30 96 M30 44 L8 74 M30 44 L52 74 M30 96 L14 168 M30 96 L46 168" stroke="#221D15" stroke-width="7" stroke-linecap="round" fill="none"/></svg></div></div>
+<div class="cap">26 · Beata Beatrix · Dante Gabriel Rossetti</div></div></div>
 <div class="floorline"></div>
-<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 384.9 cm; the figure stands 180 cm. Click a piece to approach it.</div>
+<div class="scalenote">Hung at true relative scale — the largest piece in this room spans 384.9 cm. Click a piece to approach it.</div>
 </section></div></div></div>
-<div id="hud">Room 1 of 5 · Piece 01 of 28</div>
+<div id="hud">Room 1 of 5 · Piece 01 / 28</div>
 <div class="wrap">
 <footer>
 <p><b>THE VAULT — GALLERY.</b> Pictures sourced from museum open-access masters (Wikimedia Commons), shown as enhanced HD renders — a processing pass (resize, sharpen, polish), never a repaint. The companion stand: <a href="https://mkazigwaa-max.github.io/the-vault-newsstand/">THE VAULT — Newsstand</a>, the book rack next door.</p>
@@ -481,7 +483,8 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <h2 id="p-title"></h2>
 <div class="artist" id="p-artist"></div>
 <div class="stagewrap"><div class="stage" id="stage"><img class="zimg" id="zimg" src="" alt=""></div>
-<div class="zoomctl"><button onclick="scale=Math.min(7,scale*1.3);setT()">Lean in +</button><button onclick="scale=Math.max(1,scale/1.3);setT()">Step back −</button><button onclick="scale=1;tx=0;ty=0;setT()">Full canvas</button><span class="zoomhint">Scroll to lean in · drag to walk along the canvas · tap a ? for the detail nobody tells you</span></div></div>
+<div class="zoompill" id="zoompill"><button id="zout" aria-label="Step back">−</button><span class="zpct" id="zpct">100%</span><button id="zin" aria-label="Lean in">+</button><button id="zfit" aria-label="Full canvas">⤢</button></div></div>
+<div class="zoomhint">Pinch or scroll to lean in · drag to walk the canvas once you're in · tap a ? for the detail nobody tells you</div>
 </div>
 <div class="placards"><div class="placard" id="pl-museum"></div><div class="placard" id="pl-vault"></div></div>
 <article class="story" id="story"></article>
@@ -497,7 +500,12 @@ let cur=null, walk=false, scale=1, tx=0, ty=0;
 const $=s=>document.querySelector(s);
 function mins(w){return Math.max(1,Math.round(w/200))}
 function roomOf(n){const d=DATA.find(x=>x.n===n);return d?d.room:1}
-function setT(){const img=$('#zimg'); if(img) img.style.transform=`translate(${tx}px, ${ty}px) scale(${scale})`}
+function setT(){
+  if(scale<=1){tx=0;ty=0;}
+  const img=$('#zimg'); if(img) img.style.transform=`translate(${tx}px, ${ty}px) scale(${scale})`;
+  const zp=$('#zpct'); if(zp) zp.textContent=Math.round(scale*100)+'%';
+  const st=$('#stage'); if(st) st.style.touchAction=scale>1?'none':'pan-y';
+}
 
 /* ================= THE CORRIDOR ================= */
 const corridor=$('#corridor'), track=$('#track');
@@ -516,9 +524,17 @@ function sizeWalls(){
     if(!frames.length)return;
     const maxW=Math.max(...frames.map(f=>+f.dataset.wcm));
     let s=Math.min(vw*0.92/maxW, 3.1);
-    frames.forEach(f=>{f.style.width=(+f.dataset.wcm*s)+'px'});
-    const sil=wall.querySelector('.sil svg');
-    if(sil){sil.style.height=(180*s)+'px'; sil.style.width='auto';}
+    frames.forEach(f=>{
+      let w=+f.dataset.wcm*s;
+      if(vw<=820){
+        const im=f.querySelector('img');
+        const hw=+im.getAttribute('width'), hh=+im.getAttribute('height');
+        /* mobile floor: image itself renders ≈180px tall after frame+mat
+           padding, so small pieces are never postage stamps */
+        if(hw&&hh){ const need=18+Math.ceil(214*hw/hh); if(w<need) w=need; }
+      }
+      f.style.width=w+'px';
+    });
   });
 }
 function measure(){
@@ -548,7 +564,7 @@ function updateHUD(){
   let xm=(corridor.scrollLeft+vw/2)%W; if(xm<0)xm+=W;
   let best=null,bd=1e18;
   framePos.forEach(fp=>{const d=Math.abs(fp.cx-xm); if(d<bd){bd=d;best=fp;}});
-  if(best) $('#hud').textContent=`Room ${best.room} of 5 · Piece ${best.n} of 28 — the corridor loops · keep walking →`;
+  if(best) $('#hud').textContent=`Room ${best.room} of 5 · Piece ${best.n} / 28`;
 }
 function tick(){
   recenter();
@@ -583,10 +599,14 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'){ if(target==null)target=corridor.scrollLeft; target+=corridor.clientWidth*0.55; kick(); }
   else if(e.key==='ArrowLeft'){ if(target==null)target=corridor.scrollLeft; target-=corridor.clientWidth*0.55; kick(); }
 });
-/* drag to walk (mouse/pen; touch uses native scroll) */
-let dragWalk=null, suppressClick=false;
+/* drag to walk (mouse/pen/touch-horizontal; touch-action:pan-y leaves
+   vertical touch to the page). A press that stays a press is a TAP:
+   pointer movement < 8px and never flagged as a drag (drag flag at >6px)
+   opens the piece — pointer capture retargets the click to the corridor,
+   so the tap is resolved here, not in the frame's click listener. */
+let dragWalk=null, suppressClick=false, downTap=null;
 corridor.addEventListener('pointerdown',e=>{
-  if(e.pointerType==='touch')return;
+  downTap={x:e.clientX, y:e.clientY, frame:e.target.closest?e.target.closest('.frame'):null};
   dragWalk={x:e.clientX, sl:corridor.scrollLeft, moved:false};
   corridor.setPointerCapture(e.pointerId);
 });
@@ -596,7 +616,16 @@ corridor.addEventListener('pointermove',e=>{
   if(Math.abs(dx)>6){dragWalk.moved=true; corridor.classList.add('grabbing');}
   if(dragWalk.moved){ target=null; corridor.scrollLeft=dragWalk.sl-dx; }
 });
-const endDrag=()=>{ if(dragWalk&&dragWalk.moved){suppressClick=true; setTimeout(()=>suppressClick=false,80);} dragWalk=null; corridor.classList.remove('grabbing'); recenter(); updateHUD(); };
+const endDrag=e=>{
+  if(e&&e.type==='pointerup'&&downTap&&downTap.frame&&!(dragWalk&&dragWalk.moved)
+     &&Math.hypot(e.clientX-downTap.x,e.clientY-downTap.y)<8){
+    suppressClick=true; setTimeout(()=>suppressClick=false,150);
+    openPiece(downTap.frame.dataset.n,false);
+  }
+  downTap=null;
+  if(dragWalk&&dragWalk.moved){suppressClick=true; setTimeout(()=>suppressClick=false,80);}
+  dragWalk=null; corridor.classList.remove('grabbing'); recenter(); updateHUD();
+};
 corridor.addEventListener('pointerup',endDrag);
 corridor.addEventListener('pointercancel',endDrag);
 corridor.addEventListener('click',e=>{ if(suppressClick){e.stopPropagation();e.preventDefault();} },true);
@@ -620,8 +649,21 @@ function openPiece(n, fromWalk){
   $('#p-artist').textContent=`${d.artist} · ${d.dates}`;
   const stage=$('#stage'); stage.querySelectorAll('.hotspot,.reveal').forEach(e=>e.remove());
   const img=$('#zimg'); img.alt=d.title;
-  img.onload=()=>{const st=$('#stage'); const wpx=st.clientWidth; const hpc=wpx*img.naturalHeight/img.naturalWidth; st.style.height=Math.max(300,Math.min(window.innerHeight*0.78,hpc))+'px'; st.dataset.baseh=st.style.height.replace('px','');};
-  img.src=d.full;
+  /* instant image: the hero is already warm from the corridor — show it
+     now, then swap in the full master with a 200ms fade when it lands.
+     The stage never sits black. */
+  img.onload=null;
+  img.style.transition='none'; img.style.opacity='1';
+  img.src=d.hero;
+  const pre=new Image();
+  pre.onload=()=>{
+    if(cur!==d)return;
+    const st=$('#stage'); const wpx=st.clientWidth; const hpc=wpx*pre.naturalHeight/pre.naturalWidth; st.style.height=Math.max(300,Math.min(window.innerHeight*0.78,hpc))+'px'; st.dataset.baseh=st.style.height.replace('px','');
+    img.style.transition='opacity .2s ease'; img.style.opacity='0';
+    img.src=d.full;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ img.style.opacity='1'; }));
+  };
+  pre.src=d.full;
   scale=1;tx=0;ty=0; setT();
   d.hotspots.forEach((h,i)=>{
     const dot=document.createElement('button'); dot.className='hotspot'; dot.textContent='?';
@@ -662,7 +704,7 @@ function closePiece(){
   $('#piece').classList.remove('open');
   document.body.style.overflow='';
   $('#peek').classList.remove('show');
-  const img=$('#zimg'); img.removeAttribute('src');
+  const img=$('#zimg'); img.removeAttribute('src'); img.style.opacity=''; img.style.transition='';
   cur=null; walk=false;
   updateHUD();
 }
@@ -686,7 +728,7 @@ function closePiece(){
   document.addEventListener('pointermove',e=>{
     if(!pts.has(e.pointerId))return;
     const prev=pts.get(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
-    if(pts.size===1&&drag){tx=drag.tx+(e.clientX-drag.x); ty=drag.ty+(e.clientY-drag.y); setT();}
+    if(pts.size===1&&drag&&scale>1){tx=drag.tx+(e.clientX-drag.x); ty=drag.ty+(e.clientY-drag.y); setT();}
     else if(pts.size===2){
       const [a,b]=[...pts.values()];
       const dNow=Math.hypot(a.x-b.x,a.y-b.y);
@@ -767,6 +809,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('#walkstart').addEventListener('click',()=>openPiece('01',true));
   $('#walkstart2').addEventListener('click',()=>openPiece('01',true));
   $('#backdoor').addEventListener('click',e=>{e.preventDefault();closePiece();});
+  /* zoom widget pill — same scale logic as wheel/pinch/dblclick */
+  const zb=(id,fn)=>{const b=document.getElementById(id); if(b) b.addEventListener('click',e=>{e.stopPropagation(); fn();});};
+  zb('zin',()=>{scale=Math.min(7,scale*1.3); setT();});
+  zb('zout',()=>{scale=Math.max(1,scale/1.3); setT();});
+  zb('zfit',()=>{scale=1;tx=0;ty=0; setT();});
   if(location.hash.startsWith('#/')){
     const slug=location.hash.slice(2);
     const d=DATA.find(x=>x.slug===slug);
