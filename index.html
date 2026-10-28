@@ -32,7 +32,7 @@ h1 .dot{color:var(--green)}
 .chip{flex:0 0 auto;border:1.5px solid var(--brick);color:var(--brick);background:transparent;font-family:'Karla';font-weight:700;font-size:11px;letter-spacing:.08em;padding:4px 9px;cursor:pointer;text-transform:uppercase}
 .chip.on{background:var(--brick);color:var(--paper)}
 /* ===== the corridor: one endless horizontal walk ===== */
-#corridor{position:relative;overflow-x:auto;overflow-y:hidden;height:min(82vh,780px);min-height:500px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);cursor:grab;scroll-behavior:auto;user-select:none;-webkit-user-select:none;scrollbar-width:thin;touch-action:pan-y;-webkit-overflow-scrolling:touch}
+#corridor{position:relative;overflow-x:auto;overflow-y:hidden;height:min(82vh,780px);min-height:500px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);cursor:grab;scroll-behavior:auto;user-select:none;-webkit-user-select:none;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
 #corridor.grabbing{cursor:grabbing}
 #track{display:flex;height:100%;width:max-content}
 .copy{display:flex;height:100%}
@@ -56,7 +56,7 @@ section.room{flex:0 0 auto;height:100%;display:flex;flex-direction:column;positi
 .scalenote{flex:0 0 auto;font-size:12.5px;color:#5c5138;letter-spacing:.05em;padding:8px 30px 12px;max-width:100%;overflow-wrap:break-word;line-height:1.5}
 #hud{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:45;background:rgba(244,240,230,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(34,29,21,.25);border-radius:999px;padding:6px 15px;font-size:11.5px;letter-spacing:.12em;font-weight:700;color:var(--green);text-transform:uppercase;box-shadow:0 4px 14px rgba(34,29,21,.15);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis}
 /* piece view (overlay — opens from the corridor, returns to the same spot) */
-#piece{display:none;position:fixed;inset:0;z-index:60;background:var(--paper);overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 22px 64px}
+#piece{display:none;position:fixed;inset:0;z-index:60;background:var(--paper);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 22px 64px}
 #piece.open{display:block}
 .pwrap{max-width:1240px;margin:0 auto}
 .piece-top{padding-top:18px}
@@ -131,6 +131,7 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 </div>
 <nav class="doors">
 <a class="standbtn" href="https://mkazigwaa-max.github.io/the-vault-newsstand/">THE BOOK STAND — NEXT DOOR →</a>
+<a class="standbtn" href="https://thevaultlog.substack.com">THE VAULT — THE PUBLICATION →</a>
 <a href="#room-1" data-room="1">Room 1 · The Sea &amp; The Sky</a>
 <a href="#room-2" data-room="2">Room 2 · Gold &amp; Theft</a>
 <a href="#room-3" data-room="3">Room 3 · Night &amp; Madness</a>
@@ -472,7 +473,7 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div id="hud">Room 1 of 5 · Piece 01 / 28</div>
 <div class="wrap">
 <footer>
-<p><b>THE VAULT — GALLERY.</b> Pictures sourced from museum open-access masters (Wikimedia Commons), shown as enhanced HD renders — a processing pass (resize, sharpen, polish), never a repaint. The companion stand: <a href="https://mkazigwaa-max.github.io/the-vault-newsstand/">THE VAULT — Newsstand</a>, the book rack next door.</p>
+<p><b>THE VAULT — GALLERY.</b> Pictures sourced from museum open-access masters (Wikimedia Commons), shown as enhanced HD renders — a processing pass (resize, sharpen, polish), never a repaint. The companion stand: <a href="https://mkazigwaa-max.github.io/the-vault-newsstand/">THE VAULT — Newsstand</a>, the book rack next door. The decision logs run at <a href="https://thevaultlog.substack.com">THE VAULT on Substack</a> — deals, agent fleets, and licensing, judged in public.</p>
 </footer>
 </div>
 <section id="piece">
@@ -484,7 +485,7 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="artist" id="p-artist"></div>
 <div class="stagewrap"><div class="stage" id="stage"><img class="zimg" id="zimg" src="" alt=""></div>
 <div class="zoompill" id="zoompill"><button id="zout" aria-label="Step back">−</button><span class="zpct" id="zpct">100%</span><button id="zin" aria-label="Lean in">+</button><button id="zfit" aria-label="Full canvas">⤢</button></div></div>
-<div class="zoomhint">Pinch or scroll to lean in · drag to walk the canvas once you're in · tap a ? for the detail nobody tells you</div>
+<div class="zoomhint">Scroll to read on · pinch or the + pill to lean in · drag to walk the canvas once you're in · tap a ? for the detail nobody tells you</div>
 </div>
 <div class="placards"><div class="placard" id="pl-museum"></div><div class="placard" id="pl-vault"></div></div>
 <article class="story" id="story"></article>
@@ -593,20 +594,33 @@ corridor.addEventListener('wheel',e=>{
   if(target==null)target=corridor.scrollLeft;
   target+=d*1.35; kick();
 },{passive:false});
-let scrollRaf=0;
-corridor.addEventListener('scroll',()=>{ if(!rafId&&!scrollRaf){ scrollRaf=requestAnimationFrame(()=>{scrollRaf=0; recenter(); updateHUD();}); } },{passive:true});
+let scrollRaf=0, settleT=null;
+corridor.addEventListener('scroll',()=>{
+  /* HANDS OFF the scroll position while a gesture or fling is live:
+     writing scrollLeft mid-fling kills momentum dead (the rigidity the
+     owner kept reporting). The HUD update is read-only. The silent
+     re-centre runs only once scrolling has settled — the content is
+     triplicated, so the jump is invisible. */
+  if(!rafId&&!scrollRaf){ scrollRaf=requestAnimationFrame(()=>{scrollRaf=0; updateHUD();}); }
+  clearTimeout(settleT); settleT=setTimeout(()=>{ if(!rafId) recenter(); },160);
+},{passive:true});
 document.addEventListener('keydown',e=>{
   if(cur)return;
   if(e.key==='ArrowRight'){ if(target==null)target=corridor.scrollLeft; target+=corridor.clientWidth*0.55; kick(); }
   else if(e.key==='ArrowLeft'){ if(target==null)target=corridor.scrollLeft; target-=corridor.clientWidth*0.55; kick(); }
 });
-/* drag to walk (mouse/pen/touch-horizontal; touch-action:pan-y leaves
-   vertical touch to the page). A press that stays a press is a TAP:
-   pointer movement < 8px and never flagged as a drag (drag flag at >6px)
-   opens the piece — pointer capture retargets the click to the corridor,
-   so the tap is resolved here, not in the frame's click listener. */
+/* drag to walk — MOUSE ONLY. Touch and pen are never captured, flagged
+   or intercepted: the browser's native scrolling owns every touch
+   gesture (horizontal swipe scrolls the corridor itself, vertical swipe
+   chains to the page, a tap fires the frame's own click). The captured-
+   pointer machinery below exists only because a mouse has no native
+   scroll gesture to fight. A mouse press that stays a press is a TAP:
+   movement < 8px and never drag-flagged (>6px) opens the piece —
+   capture retargets the click to the corridor, so the tap resolves
+   here, not in the frame's click listener. */
 let dragWalk=null, suppressClick=false, downTap=null;
 corridor.addEventListener('pointerdown',e=>{
+  if(e.pointerType!=='mouse')return;
   downTap={x:e.clientX, y:e.clientY, frame:e.target.closest?e.target.closest('.frame'):null};
   dragWalk={x:e.clientX, sl:corridor.scrollLeft, moved:false};
   corridor.setPointerCapture(e.pointerId);
@@ -618,6 +632,7 @@ corridor.addEventListener('pointermove',e=>{
   if(dragWalk.moved){ target=null; corridor.scrollLeft=dragWalk.sl-dx; }
 });
 const endDrag=e=>{
+  const wasMouse=!!dragWalk;
   if(e&&e.type==='pointerup'&&downTap&&downTap.frame&&!(dragWalk&&dragWalk.moved)
      &&Math.hypot(e.clientX-downTap.x,e.clientY-downTap.y)<8){
     suppressClick=true; setTimeout(()=>suppressClick=false,150);
@@ -625,7 +640,11 @@ const endDrag=e=>{
   }
   downTap=null;
   if(dragWalk&&dragWalk.moved){suppressClick=true; setTimeout(()=>suppressClick=false,80);}
-  dragWalk=null; corridor.classList.remove('grabbing'); recenter(); updateHUD();
+  dragWalk=null; corridor.classList.remove('grabbing');
+  /* touch ends here too (pointerup/pointercancel) — for touch this must
+     be a no-op: re-centring on gesture end writes scrollLeft into the
+     tail of the reader's fling. Only a finished MOUSE drag re-centres. */
+  if(wasMouse){ recenter(); updateHUD(); }
 };
 corridor.addEventListener('pointerup',endDrag);
 corridor.addEventListener('pointercancel',endDrag);
@@ -659,7 +678,11 @@ function openPiece(n, fromWalk){
   const pre=new Image();
   pre.onload=()=>{
     if(cur!==d)return;
-    const st=$('#stage'); const wpx=st.clientWidth; const hpc=wpx*pre.naturalHeight/pre.naturalWidth; st.style.height=Math.max(300,Math.min(window.innerHeight*0.78,hpc))+'px'; st.dataset.baseh=st.style.height.replace('px','');
+    const st=$('#stage');
+    /* fit the stage to the master's aspect — but only before the reader
+       has started scrolling; resizing the stage mid-read is a layout
+       jump under the finger. */
+    if($('#piece').scrollTop<10){ const wpx=st.clientWidth; const hpc=wpx*pre.naturalHeight/pre.naturalWidth; st.style.height=Math.max(300,Math.min(window.innerHeight*0.78,hpc))+'px'; st.dataset.baseh=st.style.height.replace('px',''); }
     img.style.transition='opacity .2s ease'; img.style.opacity='0';
     img.src=d.full;
     requestAnimationFrame(()=>requestAnimationFrame(()=>{ img.style.opacity='1'; }));
@@ -709,24 +732,32 @@ function closePiece(){
   cur=null; walk=false;
   updateHUD();
 }
-/* zoom: wheel + drag + dblclick + pinch (inside the piece view) */
+/* zoom: pinch + drag-pan (zoomed only) + dblclick + the pill.
+   NO wheel handler and NO lone-finger tracking: the wheel and a single
+   finger scroll the piece view natively, always — the wheel-zoom hijack
+   and the always-on pointer tracking were the machinery eating scroll
+   on the art (owner, 2026-10-27 19:06 CT: "you never fix the scroll"). */
 (function(){
   const stage=()=>$('#stage');
-  document.addEventListener('wheel',e=>{
-    if(!cur||!$('#piece').classList.contains('open'))return;
-    if(!stage().contains(e.target))return;
-    e.preventDefault();
-    const f=e.deltaY<0?1.13:0.885;
-    scale=Math.min(7,Math.max(1,scale*f)); setT();
-  },{passive:false});
-  let drag=null; const pts=new Map();
+  let drag=null, firstPt=null; const pts=new Map();
   document.addEventListener('pointerdown',e=>{
     if(!cur||!stage()||!stage().contains(e.target)||e.target.classList.contains('hotspot'))return;
+    if(scale>1){
+      pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      if(pts.size===1) drag={x:e.clientX,y:e.clientY,tx,ty};
+      stage().classList.add('grabbing');
+      return;
+    }
+    /* at 100% a lone finger belongs to native scrolling — it is only
+       remembered, untouched, in case a second finger turns it into a
+       pinch; the pinch then adopts both points. */
+    if(!firstPt){ firstPt={id:e.pointerId,x:e.clientX,y:e.clientY}; return; }
+    pts.set(firstPt.id,{x:firstPt.x,y:firstPt.y}); firstPt=null;
     pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
-    if(pts.size===1) drag={x:e.clientX,y:e.clientY,tx,ty};
     stage().classList.add('grabbing');
   });
   document.addEventListener('pointermove',e=>{
+    if(firstPt&&e.pointerId===firstPt.id){ firstPt.x=e.clientX; firstPt.y=e.clientY; return; }
     if(!pts.has(e.pointerId))return;
     const prev=pts.get(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
     if(pts.size===1&&drag&&scale>1){tx=drag.tx+(e.clientX-drag.x); ty=drag.ty+(e.clientY-drag.y); setT();}
@@ -737,14 +768,17 @@ function closePiece(){
       window._pd=dNow;
     }
   });
-  const up=e=>{pts.delete(e.pointerId); if(pts.size<2)window._pd=null; if(pts.size===0){drag=null; const s=stage(); if(s)s.classList.remove('grabbing');}};
+  const up=e=>{ if(firstPt&&e.pointerId===firstPt.id)firstPt=null;
+    pts.delete(e.pointerId); if(pts.size<2)window._pd=null; if(pts.size===0){drag=null; const s=stage(); if(s)s.classList.remove('grabbing');}};
   document.addEventListener('pointerup',up); document.addEventListener('pointercancel',up);
   document.addEventListener('dblclick',e=>{if(cur&&stage()&&stage().contains(e.target)){scale=scale>1.2?1:2.6; tx=0;ty=0; setT();}});
   document.addEventListener('click',e=>{const st=stage(); if(cur&&st&&st.contains(e.target)&&!e.target.classList.contains('hotspot')){st.querySelectorAll('.reveal').forEach(r=>r.remove());}});
-  function img0h(){const st=stage(); return st? (st.dataset.baseh? +st.dataset.baseh : st.clientHeight) : 300;}
-  /* owner order 2026-10-27 17:39 CT: the painting ROLLS with the page like
-     everything else — the pinned/shrinking-stage scroll handler is deleted,
-     not replaced. Nothing in the piece view is sticky or pinned. */
+  /* scroll ownership, final form (owner orders 2026-10-27 17:39 + 19:06 CT):
+     the painting ROLLS with the page, nothing in the piece view is sticky
+     or pinned, no handler shrinks or resizes the stage while the reader
+     scrolls, and no gesture is intercepted at 100% — native scroll owns
+     the wheel and the finger; this IIFE only ever sees a pinch or a
+     drag on an already-zoomed canvas. */
 })();
 /* stamp filter */
 let stampOn=null;
@@ -760,8 +794,14 @@ function filterStamp(btn){
   if(lit){ const cr=corridor.getBoundingClientRect(); const r=lit.getBoundingClientRect();
     goTo(r.left-cr.left+corridor.scrollLeft+r.width/2-corridor.clientWidth/2); }
 }
-let resizeT=null;
+let resizeT=null, lastVW=document.documentElement.clientWidth;
 window.addEventListener('resize',()=>{
+  /* phone browsers fire "resize" on scroll as the URL bar shows and hides
+     (height-only). Re-laying the corridor for those is a layout jump in
+     the middle of the reader's scroll — more of the rigidity. Only a
+     WIDTH change (rotation, a real window resize) re-lays anything. */
+  if(document.documentElement.clientWidth===lastVW)return;
+  lastVW=document.documentElement.clientWidth;
   clearTimeout(resizeT);
   resizeT=setTimeout(()=>{
     const rel=corridor.scrollLeft-W;
