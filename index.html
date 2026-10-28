@@ -55,6 +55,15 @@ section.room{flex:0 0 auto;height:100%;display:flex;flex-direction:column;positi
 .floorline{flex:0 0 auto;height:26px;border-top:2px solid #8a7c5c;background:linear-gradient(180deg,rgba(34,29,21,.16),rgba(34,29,21,0) 75%)}
 .scalenote{flex:0 0 auto;font-size:12.5px;color:#5c5138;letter-spacing:.05em;padding:8px 30px 12px;max-width:100%;overflow-wrap:break-word;line-height:1.5}
 #hud{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:45;background:rgba(244,240,230,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(34,29,21,.25);border-radius:999px;padding:6px 15px;font-size:11.5px;letter-spacing:.12em;font-weight:700;color:var(--green);text-transform:uppercase;box-shadow:0 4px 14px rgba(34,29,21,.15);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis}
+#corridorwrap{position:relative}
+/* ===== how-to header: the teaching mechanism, two words ===== */
+.howto{margin:22px 0 4px}
+.howto .howlabel{font-size:12px;letter-spacing:.18em;font-weight:700;color:var(--green)}
+.howto .howline{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(32px,7.6vw,48px);line-height:1.05;margin-top:5px}
+/* ===== TAKE THE WALK as a main button: big, full-width, sticky ===== */
+#walkbar{position:sticky;top:10px;z-index:44;margin:16px 0 12px}
+#walkstart{display:flex;align-items:center;justify-content:center;width:100%;background:var(--green);color:var(--paper);border:none;padding:17px 20px;font-family:'Karla';font-weight:700;font-size:17px;letter-spacing:.09em;cursor:pointer;box-shadow:0 10px 26px rgba(34,29,21,.3)}
+#walkstart:hover{background:#2E3A20}
 /* piece view (overlay — opens from the corridor, returns to the same spot) */
 #piece{display:none;position:fixed;inset:0;z-index:60;background:var(--paper);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 22px 64px}
 #piece.open{display:block}
@@ -124,6 +133,7 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <p class="tagline">Twenty-eight paintings, hung at their true size — and the story under each one.</p>
 <div class="flag">28 PIECES · 5 ROOMS · ONE ENDLESS CORRIDOR</div>
 </header>
+<div class="howto"><div class="howlabel">HOW TO</div><div class="howline">Scroll and click.</div></div>
 <div id="roomshead">
 <div class="intro">
 <p>These are not the most famous paintings in the world. They are the ones with the best stories behind them — the thefts, the feuds, the severed heads sent as legal documents, the models who nearly died for the calm on the surface. Each one hangs at its true relative size, with the detail nobody tells you marked on the canvas.</p>
@@ -137,12 +147,12 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <a href="#room-3" data-room="3">Room 3 · Night &amp; Madness</a>
 <a href="#room-4" data-room="4">Room 4 · Violence &amp; Revenge</a>
 <a href="#room-5" data-room="5">Room 5 · Faces</a>
-<button class="walkbtn" id="walkstart">Take The Walk →</button>
 </nav>
 <div class="stampbar"><span class="lbl">STORY STAMPS — FILTER THE WALL:</span><button class="chip" data-stamp="SMALLER THAN A POSTER">SMALLER THAN A POSTER</button><button class="chip" data-stamp="PAINTED FROM AN ASYLUM WINDOW">PAINTED FROM AN ASYLUM WINDOW</button><button class="chip" data-stamp="CUT DOWN TO FIT A DOOR">CUT DOWN TO FIT A DOOR</button><button class="chip" data-stamp="THE KING IS WATCHING YOU">THE KING IS WATCHING YOU</button><button class="chip" data-stamp="BURIED AT HER FEET">BURIED AT HER FEET</button><button class="chip" data-stamp="STOLEN TWICE">STOLEN TWICE</button><button class="chip" data-stamp="A MAN, A CLIFF, NO FACE">A MAN, A CLIFF, NO FACE</button><button class="chip" data-stamp="TWO YEARS OF DOTS">TWO YEARS OF DOTS</button><button class="chip" data-stamp="NOBODY KNOWS HER NAME">NOBODY KNOWS HER NAME</button><button class="chip" data-stamp="BOUGHT BEFORE IT WAS FINISHED">BOUGHT BEFORE IT WAS FINISHED</button><button class="chip" data-stamp="15 LIVED. 147 BOARDED">15 LIVED. 147 BOARDED</button><button class="chip" data-stamp="PAINTED ON A WALL">PAINTED ON A WALL</button><button class="chip" data-stamp="HIS OWN HEAD">HIS OWN HEAD</button><button class="chip" data-stamp="HER REVENGE">HER REVENGE</button><button class="chip" data-stamp="A SONG ON HIS BACKSIDE">A SONG ON HIS BACKSIDE</button><button class="chip" data-stamp="THE MODEL NEARLY DIED">THE MODEL NEARLY DIED</button><button class="chip" data-stamp="WON BACK IN COURT">WON BACK IN COURT</button><button class="chip" data-stamp="NEVER SOLD">NEVER SOLD</button><button class="chip" data-stamp="SLASHED WITH A CLEAVER">SLASHED WITH A CLEAVER</button><button class="chip" data-stamp="NAMED BY AN INSULT">NAMED BY AN INSULT</button><button class="chip" data-stamp="NO HERO">NO HERO</button><button class="chip" data-stamp="FAMOUS BECAUSE STOLEN">FAMOUS BECAUSE STOLEN</button><button class="chip" data-stamp="QUEEN FOR NINE DAYS">QUEEN FOR NINE DAYS</button><button class="chip" data-stamp="A PORTRAIT HIDES ON ITS BACK">A PORTRAIT HIDES ON ITS BACK</button><button class="chip" data-stamp="PAINTED BY HIS FRIEND">PAINTED BY HIS FRIEND</button><button class="chip" data-stamp="HE DUG UP THE POEMS">HE DUG UP THE POEMS</button><button class="chip" data-stamp="HE SIGNED THE WALL">HE SIGNED THE WALL</button><button class="chip" data-stamp="THE SKULL ONLY SHOWS SIDEWAYS">THE SKULL ONLY SHOWS SIDEWAYS</button></div>
 </div>
 </div>
-<div id="corridor"><div id="track"><div class="copy" data-copy="1" aria-hidden="true"><section class="room" data-room="1" style="background:#ECE9DF">
+<div class="wrap"><div id="walkbar"><button class="walkbtn" id="walkstart">TAKE THE WALK →</button></div></div>
+<div id="corridorwrap"><div id="corridor"><div id="track"><div class="copy" data-copy="1" aria-hidden="true"><section class="room" data-room="1" style="background:#ECE9DF">
 <div class="roomhead"><span class="roomno">ROOM 1</span><h2>The Sea & The Sky</h2><span class="doorline">Door to <a href="#room-2" data-room="2">Room 2 — Gold & Theft</a></span></div>
 <div class="wall"><div class="hangline"></div><div class="frame" data-n="01" data-room="1" data-wcm="37.8" data-stamp="SMALLER THAN A POSTER" title="The Great Wave Off Kanagawa">
 <div class="stamp">SMALLER THAN A POSTER</div>
@@ -469,7 +479,7 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="cap">26 · Beata Beatrix · Dante Gabriel Rossetti</div></div></div>
 <div class="floorline"></div>
 <div class="scalenote">Hung at true relative scale — the largest piece in this room spans 384.9 cm. Click a piece to approach it.</div>
-</section></div></div></div>
+</section></div></div></div></div>
 <div id="hud">Room 1 of 5 · Piece 01 / 28</div>
 <div class="wrap">
 <footer>
