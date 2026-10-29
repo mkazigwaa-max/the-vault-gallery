@@ -11,25 +11,24 @@
 @font-face{font-family:'Karla';src:url('assets/Karla-700.woff2') format('woff2');font-weight:700}
 :root{--paper:#F4F0E6;--ink:#221D15;--green:#3E4C2B;--brick:#9C3A2B;--line:#cbbfa4;--mat:#FBF8F0;--wood:#2A2118}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:'Karla',Helvetica,Arial,sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden;padding-bottom:56px}
-.wrap{max-width:1240px;margin:0 auto;padding:0 22px}
-header.mast{padding:26px 0 10px;border-bottom:3px solid var(--ink)}
-.kicker{letter-spacing:.32em;font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase}
-h1{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-size:clamp(36px,5.8vw,66px);line-height:.98;margin:8px 0 4px}
+body{background:var(--paper);color:var(--ink);font-family:'Karla',Helvetica,Arial,sans-serif;font-size:21px;line-height:1.618;overflow-x:hidden;padding-bottom:55px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 21px}
+header.mast{padding:21px 0 8px;border-bottom:3px solid var(--ink)}
+.kicker{letter-spacing:.32em;font-size:13px;font-weight:700;color:var(--green);text-transform:uppercase}
+h1{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-size:clamp(34px,5.8vw,55px);line-height:.98;margin:8px 0 5px}
 h1 .dot{color:var(--green)}
-.tagline{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:clamp(18px,2.4vw,23px)}
-.flag{margin:18px 0 2px;font-weight:700;letter-spacing:.14em;font-size:13px;color:var(--green);text-transform:uppercase}
-.intro{margin:14px 0 4px;font-size:16.5px;line-height:1.62;display:grid;grid-template-columns:1fr 1fr;gap:0 36px}
-.intro p{margin-bottom:10px}
-.doors{display:flex;flex-wrap:wrap;gap:10px 26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin:26px 0 10px;align-items:center}
-.doors a.standbtn{border:1.5px solid var(--green);border-radius:999px;padding:6px 14px;letter-spacing:.08em;background:rgba(62,76,43,.06);white-space:nowrap}
-.doors a{color:var(--green);font-weight:700;text-decoration:none;font-size:14.5px;letter-spacing:.05em}
+.tagline{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:21px}
+.flag{margin:21px 0 2px;font-weight:700;letter-spacing:.14em;font-size:13px;color:var(--green);text-transform:uppercase}
+.introline{margin:13px 0 5px;font-size:21px;line-height:1.618}
+.doors{display:flex;flex-wrap:wrap;gap:8px 21px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:13px 0;margin:21px 0 8px;align-items:center}
+.doors a.standbtn{border:1.5px solid var(--green);border-radius:999px;padding:5px 13px;letter-spacing:.08em;background:rgba(62,76,43,.06);white-space:nowrap}
+.doors a{color:var(--green);font-weight:700;text-decoration:none;font-size:13px;letter-spacing:.05em}
 .doors a:hover{text-decoration:underline}
-.doors .walkbtn{margin-left:auto;background:var(--green);color:var(--paper);border:none;padding:7px 16px;font-family:'Karla';font-weight:700;font-size:14px;letter-spacing:.06em;cursor:pointer}
-.stampbar{display:flex;flex-wrap:nowrap;gap:7px;margin:12px 0 18px;align-items:center;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.doors .walkbtn{margin-left:auto;background:var(--green);color:var(--paper);border:none;padding:8px 13px;font-family:'Karla';font-weight:700;font-size:13px;letter-spacing:.06em;cursor:pointer}
+.stampbar{display:flex;flex-wrap:nowrap;gap:8px;margin:13px 0 21px;align-items:center;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .stampbar::-webkit-scrollbar{display:none}
-.stampbar .lbl{font-size:12px;letter-spacing:.18em;font-weight:700;color:#5c5138;margin-right:4px;flex:0 0 auto}
-.chip{flex:0 0 auto;border:1.5px solid var(--brick);color:var(--brick);background:transparent;font-family:'Karla';font-weight:700;font-size:11px;letter-spacing:.08em;padding:4px 9px;cursor:pointer;text-transform:uppercase}
+.stampbar .lbl{font-size:13px;letter-spacing:.18em;font-weight:700;color:#5c5138;margin-right:5px;flex:0 0 auto}
+.chip{flex:0 0 auto;border:1.5px solid var(--brick);color:var(--brick);background:transparent;font-family:'Karla';font-weight:700;font-size:13px;letter-spacing:.08em;padding:5px 8px;cursor:pointer;text-transform:uppercase}
 .chip.on{background:var(--brick);color:var(--paper)}
 /* ===== the corridor: one endless horizontal walk ===== */
 #corridor{position:relative;overflow-x:auto;overflow-y:hidden;height:min(82vh,780px);min-height:500px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);cursor:grab;scroll-behavior:auto;user-select:none;-webkit-user-select:none;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
@@ -37,10 +36,10 @@ h1 .dot{color:var(--green)}
 #track{display:flex;height:100%;width:max-content}
 .copy{display:flex;height:100%}
 section.room{flex:0 0 auto;height:100%;display:flex;flex-direction:column;position:relative;border-right:1px solid var(--line);transition:background 1.2s ease}
-.roomhead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding:26px 30px 0}
-.roomno{font-family:'Playfair Display',serif;font-weight:900;font-size:15px;color:var(--green);letter-spacing:.2em}
-.roomhead h2{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(26px,3.6vw,38px)}
-.doorline{margin-left:auto;font-size:13.5px;color:#5c5138}
+.roomhead{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;padding:21px 34px 0}
+.roomno{font-family:'Playfair Display',serif;font-weight:900;font-size:13px;color:var(--green);letter-spacing:.2em}
+.roomhead h2{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(21px,3.6vw,34px)}
+.doorline{margin-left:auto;font-size:13px;color:#5c5138}
 .doorline a{color:var(--green);font-weight:700;text-decoration:none}
 .wall{flex:1 1 auto;display:flex;align-items:center;gap:34px;padding:26px 34px 66px;position:relative}
 .wall .hangline{position:absolute;left:0;right:0;top:50%;border-top:1px dashed rgba(92,81,56,.28)}
@@ -48,80 +47,78 @@ section.room{flex:0 0 auto;height:100%;display:flex;flex-direction:column;positi
 .frame .mat{background:var(--mat);padding:7% 8%}
 .frame img{display:block;width:100%;height:auto;background:#ddd3ba}
 .frame:hover{transform:translateY(-4px)}
-.frame .stamp{position:absolute;top:6px;right:6px;transform:rotate(4deg);border:2px solid var(--brick);color:var(--brick);background:rgba(244,240,230,.92);font-weight:700;font-size:10px;letter-spacing:.1em;padding:3px 7px;text-transform:uppercase;z-index:3}
-.frame .cap{position:absolute;left:0;right:0;bottom:-38px;text-align:center;font-size:12.5px;color:#5c5138;letter-spacing:.04em;white-space:normal;line-height:1.35;padding:0 4px}
+.frame .stamp{position:absolute;top:6px;right:6px;transform:rotate(4deg);border:2px solid var(--brick);color:var(--brick);background:rgba(244,240,230,.92);font-weight:700;font-size:13px;letter-spacing:.1em;padding:3px 8px;text-transform:uppercase;z-index:3}
+.frame .cap{position:absolute;left:0;right:0;bottom:-38px;text-align:center;font-size:13px;color:#5c5138;letter-spacing:.04em;white-space:normal;line-height:1.309;padding:0 5px}
 .wall.dim .frame{opacity:.38}
 .wall.dim .frame.lit{opacity:1}
 .floorline{flex:0 0 auto;height:26px;border-top:2px solid #8a7c5c;background:linear-gradient(180deg,rgba(34,29,21,.16),rgba(34,29,21,0) 75%)}
-.scalenote{flex:0 0 auto;font-size:12.5px;color:#5c5138;letter-spacing:.05em;padding:8px 30px 12px;max-width:100%;overflow-wrap:break-word;line-height:1.5}
-#hud{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:45;background:rgba(244,240,230,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(34,29,21,.25);border-radius:999px;padding:6px 15px;font-size:11.5px;letter-spacing:.12em;font-weight:700;color:var(--green);text-transform:uppercase;box-shadow:0 4px 14px rgba(34,29,21,.15);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis}
+.scalenote{flex:0 0 auto;font-size:13px;color:#5c5138;letter-spacing:.05em;padding:8px 34px 13px;max-width:100%;overflow-wrap:break-word;line-height:1.618}
+#hud{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:45;background:rgba(244,240,230,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(34,29,21,.25);border-radius:999px;padding:5px 13px;font-size:13px;letter-spacing:.12em;font-weight:700;color:var(--green);text-transform:uppercase;box-shadow:0 4px 14px rgba(34,29,21,.15);white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis}
 #corridorwrap{position:relative}
 /* ===== how-to header: the teaching mechanism, two words ===== */
-.howto{margin:22px 0 4px}
-.howto .howlabel{font-size:12px;letter-spacing:.18em;font-weight:700;color:var(--green)}
-.howto .howline{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(32px,7.6vw,48px);line-height:1.05;margin-top:5px}
+.howto{margin:21px 0 5px}
+.howto .howline{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(34px,7.6vw,55px);line-height:1.05;margin-top:5px}
 /* ===== TAKE THE WALK as a main button: big, full-width, sticky ===== */
-#walkbar{position:sticky;top:10px;z-index:44;margin:16px 0 12px}
-#walkstart{display:flex;align-items:center;justify-content:center;width:100%;background:var(--green);color:var(--paper);border:none;padding:17px 20px;font-family:'Karla';font-weight:700;font-size:17px;letter-spacing:.09em;cursor:pointer;box-shadow:0 10px 26px rgba(34,29,21,.3)}
+#walkbar{position:sticky;top:10px;z-index:44;margin:13px 0 13px}
+#walkstart{display:flex;align-items:center;justify-content:center;width:100%;background:var(--green);color:var(--paper);border:none;padding:21px 21px;font-family:'Karla';font-weight:700;font-size:21px;letter-spacing:.09em;cursor:pointer;box-shadow:0 10px 26px rgba(34,29,21,.3)}
 #walkstart:hover{background:#2E3A20}
 /* piece view (overlay — opens from the corridor, returns to the same spot) */
-#piece{display:none;position:fixed;inset:0;z-index:60;background:var(--paper);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 22px 64px}
+#piece{display:none;position:fixed;inset:0;z-index:60;background:var(--paper);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 21px 55px}
 #piece.open{display:block}
 .pwrap{max-width:1240px;margin:0 auto}
-.piece-top{padding-top:18px}
-.progress{font-size:12.5px;letter-spacing:.16em;font-weight:700;color:var(--green);text-transform:uppercase}
-.piece-top h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(30px,4.6vw,52px);line-height:1.04;margin:6px 0 2px}
-.piece-top .artist{font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#5c5138}
-.stagewrap{position:relative;margin:20px 0 10px}
+.piece-top{padding-top:21px}
+.progress{font-size:13px;letter-spacing:.16em;font-weight:700;color:var(--green);text-transform:uppercase}
+.piece-top h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(34px,4.6vw,55px);line-height:1.04;margin:5px 0 2px}
+.piece-top .artist{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#5c5138}
+.stagewrap{position:relative;margin:21px 0 8px}
 .stage{position:relative;overflow:hidden;background:#14100B;border:1px solid var(--ink);height:56vh;min-height:320px;cursor:grab;touch-action:pan-y}
 .stage.grabbing{cursor:grabbing}
 .stage .zimg{position:absolute;left:0;top:0;width:100%;height:100%;display:block;transform-origin:50% 50%;user-select:none;-webkit-user-drag:none}
 .hotspot{position:absolute;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;border:2px solid var(--paper);background:rgba(62,76,43,.88);color:var(--paper);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;box-shadow:0 2px 8px rgba(0,0,0,.45)}
-.reveal{position:absolute;z-index:6;max-width:330px;background:var(--paper);border:1px solid var(--ink);border-left:4px solid var(--green);padding:12px 14px;font-size:14.5px;line-height:1.5;box-shadow:0 14px 30px rgba(0,0,0,.35);display:none}
-.reveal b{display:block;font-family:'Playfair Display',serif;font-size:16px;margin-bottom:3px}
+.reveal{position:absolute;z-index:6;max-width:330px;background:var(--paper);border:1px solid var(--ink);border-left:4px solid var(--green);padding:13px 13px;font-size:13px;line-height:1.618;box-shadow:0 14px 30px rgba(0,0,0,.35);display:none}
+.reveal b{display:block;font-family:'Playfair Display',serif;font-size:21px;margin-bottom:3px}
 .reveal.show{display:block}
 .zoompill{position:absolute;right:12px;bottom:12px;z-index:8;display:flex;align-items:center;gap:2px;height:34px;padding:0 6px;border-radius:999px;background:rgba(244,240,230,.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(34,29,21,.3);box-shadow:0 4px 14px rgba(34,29,21,.22)}
 .zoompill button{width:27px;height:27px;border:none;border-radius:50%;background:transparent;color:var(--ink);font-family:'Karla';font-weight:700;font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .16s ease}
 .zoompill button:hover,.zoompill button:active{background:rgba(62,76,43,.16)}
-.zoompill .zpct{font-size:12px;font-weight:700;letter-spacing:.03em;min-width:42px;text-align:center;color:var(--green)}
-.zoomhint{font-size:11px;color:#5c5138;margin-top:8px;line-height:1.45;max-width:100%}
-.placards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:28px 0 10px}
-.placard{border:1px solid var(--line);background:var(--mat);padding:18px 20px}
-.placard .pl-k{font-size:11px;letter-spacing:.22em;font-weight:700;color:#5c5138;text-transform:uppercase;margin-bottom:8px}
-.placard dl{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font-size:15px}
+.zoompill .zpct{font-size:13px;font-weight:700;letter-spacing:.03em;min-width:42px;text-align:center;color:var(--green)}
+.zoomhint{font-size:13px;color:#5c5138;margin-top:8px;line-height:1.309;max-width:100%}
+.placards{display:grid;grid-template-columns:1fr 1fr;gap:21px;margin:34px 0 8px}
+.placard{border:1px solid var(--line);background:var(--mat);padding:21px 21px}
+.placard .pl-k{font-size:13px;letter-spacing:.22em;font-weight:700;color:#5c5138;text-transform:uppercase;margin-bottom:8px}
+.placard dl{display:grid;grid-template-columns:auto 1fr;gap:3px 13px;font-size:13px}
 .placard dt{color:#5c5138}.placard dd{font-weight:700}
-.placard .headline{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(21px,3vw,30px);line-height:1.15;margin-bottom:8px}
-.placard .meta{font-size:13.5px;color:#5c5138;letter-spacing:.06em;margin-bottom:12px}
-.placard .readbtn{display:inline-block;background:var(--green);color:var(--paper);text-decoration:none;font-weight:700;padding:9px 18px;font-size:14.5px;letter-spacing:.05em}
-.placard .stampbig{display:inline-block;border:2px solid var(--brick);color:var(--brick);font-weight:700;font-size:11.5px;letter-spacing:.1em;padding:4px 9px;transform:rotate(-2deg);text-transform:uppercase}
-article.story{max-width:760px;margin:36px auto 0;font-size:18px;line-height:1.68}
-article.story p{margin-bottom:15px}
-article.story p.verdict{font-family:'Playfair Display',serif;font-style:italic;font-size:20.5px;line-height:1.5;border-left:3px solid var(--green);padding:4px 0 4px 16px;margin:22px 0}
-.nextdoor{max-width:760px;margin:34px auto 0;border-top:1px solid var(--line);padding-top:16px;font-size:16px}
+.placard .headline{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(21px,3vw,34px);line-height:1.15;margin-bottom:8px}
+.placard .meta{font-size:13px;color:#5c5138;letter-spacing:.06em;margin-bottom:13px}
+.placard .readbtn{display:inline-block;background:var(--green);color:var(--paper);text-decoration:none;font-weight:700;padding:8px 21px;font-size:13px;letter-spacing:.05em}
+.placard .stampbig{display:inline-block;border:2px solid var(--brick);color:var(--brick);font-weight:700;font-size:13px;letter-spacing:.1em;padding:5px 8px;transform:rotate(-2deg);text-transform:uppercase}
+article.story{max-width:760px;margin:34px auto 0;font-size:21px;line-height:1.618}
+article.story p{margin-bottom:13px}
+article.story p.verdict{font-family:'Playfair Display',serif;font-style:italic;font-size:21px;line-height:1.618;border-left:3px solid var(--green);padding:5px 0 5px 13px;margin:21px 0}
+.nextdoor{max-width:760px;margin:34px auto 0;border-top:1px solid var(--line);padding-top:13px;font-size:21px}
 .nextdoor a{color:var(--green);font-weight:700;text-decoration:none}
 .peek{position:fixed;right:0;top:50%;transform:translateY(-50%);width:54px;height:200px;z-index:70;cursor:pointer;display:none;border:1px solid var(--ink);border-right:none;box-shadow:-8px 10px 24px rgba(34,29,21,.3)}
 .peek.show{display:block}
 .peek img{width:100%;height:100%;object-fit:cover;display:block}
 .peek span{position:absolute;bottom:6px;left:50%;transform:rotate(90deg) translateX(50%);transform-origin:left bottom;color:var(--paper);font-size:11px;font-weight:700;letter-spacing:.14em;text-shadow:0 1px 4px #000;white-space:nowrap}
-.backdoor{display:inline-block;margin:14px 0 0;color:var(--green);font-weight:700;text-decoration:none;font-size:14.5px}
-footer{border-top:3px solid var(--ink);margin-top:56px;padding:26px 0 10px;font-size:15px;max-width:820px}
+.backdoor{display:inline-block;margin:13px 0 0;color:var(--green);font-weight:700;text-decoration:none;font-size:13px}
+footer{border-top:3px solid var(--ink);margin-top:55px;padding:21px 0 8px;font-size:13px;max-width:820px}
 footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 @media (max-width:820px){
- header.mast{padding:14px 0 2px}
- .tagline{font-size:17px}
- .intro{grid-template-columns:1fr;font-size:15.5px}
+ header.mast{padding:13px 0 2px}
+ .tagline{font-size:21px}
  .doors{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
  .doors::-webkit-scrollbar{display:none}
  .doors a{flex:0 0 auto}
  .doors .walkbtn{margin-left:8px;flex:0 0 auto}
  #corridor{height:74vh;min-height:430px}
  .wall{gap:22px;padding:20px 18px 60px}
- .roomhead{padding:18px 18px 0}
- .scalenote{padding:8px 18px 10px}
+ .roomhead{padding:21px 21px 0}
+ .scalenote{padding:8px 21px 8px}
  .placards{grid-template-columns:1fr}
  .stage{height:44vh}
- article.story{font-size:17px}
- #hud{font-size:11px;bottom:10px;padding:5px 12px}
+ article.story{font-size:21px}
+ #hud{font-size:13px;bottom:10px;padding:5px 13px}
 }
 </style>
 </head>
@@ -133,7 +130,9 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <p class="tagline">Twenty-eight paintings, hung at their true size — and the story under each one.</p>
 <div class="flag">28 PIECES · 5 ROOMS · ONE ENDLESS CORRIDOR</div>
 </header>
-<div class="howto"><div class="howlabel">HOW TO</div><div class="howline">Scroll and click.</div></div>
+<div id="walkbar"><button class="walkbtn" id="walkstart">TAKE THE WALK →</button></div>
+<div class="howto"><div class="howline">Scroll and click — or take the Walk.</div></div>
+<p class="introline">Not the most famous paintings in the world — the ones with the best stories behind them: the thefts, the feuds, the severed heads sent as legal documents. Each one hangs at its true size, with the detail nobody tells you marked on the canvas.</p>
 <nav class="doors">
 <a class="standbtn" href="https://mkazigwaa-max.github.io/the-vault-newsstand/">THE BOOK STAND — NEXT DOOR →</a>
 <a class="standbtn" href="https://thevaultlog.substack.com">THE VAULT — THE PUBLICATION →</a>
@@ -144,12 +143,6 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <a href="#room-5" data-room="5">Room 5 · Faces</a>
 </nav>
 <div class="stampbar"><span class="lbl">STORY STAMPS — FILTER THE WALL:</span><button class="chip" data-stamp="SMALLER THAN A POSTER">SMALLER THAN A POSTER</button><button class="chip" data-stamp="PAINTED FROM AN ASYLUM WINDOW">PAINTED FROM AN ASYLUM WINDOW</button><button class="chip" data-stamp="CUT DOWN TO FIT A DOOR">CUT DOWN TO FIT A DOOR</button><button class="chip" data-stamp="THE KING IS WATCHING YOU">THE KING IS WATCHING YOU</button><button class="chip" data-stamp="BURIED AT HER FEET">BURIED AT HER FEET</button><button class="chip" data-stamp="STOLEN TWICE">STOLEN TWICE</button><button class="chip" data-stamp="A MAN, A CLIFF, NO FACE">A MAN, A CLIFF, NO FACE</button><button class="chip" data-stamp="TWO YEARS OF DOTS">TWO YEARS OF DOTS</button><button class="chip" data-stamp="NOBODY KNOWS HER NAME">NOBODY KNOWS HER NAME</button><button class="chip" data-stamp="BOUGHT BEFORE IT WAS FINISHED">BOUGHT BEFORE IT WAS FINISHED</button><button class="chip" data-stamp="15 LIVED. 147 BOARDED">15 LIVED. 147 BOARDED</button><button class="chip" data-stamp="PAINTED ON A WALL">PAINTED ON A WALL</button><button class="chip" data-stamp="HIS OWN HEAD">HIS OWN HEAD</button><button class="chip" data-stamp="HER REVENGE">HER REVENGE</button><button class="chip" data-stamp="A SONG ON HIS BACKSIDE">A SONG ON HIS BACKSIDE</button><button class="chip" data-stamp="THE MODEL NEARLY DIED">THE MODEL NEARLY DIED</button><button class="chip" data-stamp="WON BACK IN COURT">WON BACK IN COURT</button><button class="chip" data-stamp="NEVER SOLD">NEVER SOLD</button><button class="chip" data-stamp="SLASHED WITH A CLEAVER">SLASHED WITH A CLEAVER</button><button class="chip" data-stamp="NAMED BY AN INSULT">NAMED BY AN INSULT</button><button class="chip" data-stamp="NO HERO">NO HERO</button><button class="chip" data-stamp="FAMOUS BECAUSE STOLEN">FAMOUS BECAUSE STOLEN</button><button class="chip" data-stamp="QUEEN FOR NINE DAYS">QUEEN FOR NINE DAYS</button><button class="chip" data-stamp="A PORTRAIT HIDES ON ITS BACK">A PORTRAIT HIDES ON ITS BACK</button><button class="chip" data-stamp="PAINTED BY HIS FRIEND">PAINTED BY HIS FRIEND</button><button class="chip" data-stamp="HE DUG UP THE POEMS">HE DUG UP THE POEMS</button><button class="chip" data-stamp="HE SIGNED THE WALL">HE SIGNED THE WALL</button><button class="chip" data-stamp="THE SKULL ONLY SHOWS SIDEWAYS">THE SKULL ONLY SHOWS SIDEWAYS</button></div>
-<div id="walkbar"><button class="walkbtn" id="walkstart">TAKE THE WALK →</button></div>
-<div id="roomshead">
-<div class="intro">
-<p>These are not the most famous paintings in the world. They are the ones with the best stories behind them — the thefts, the feuds, the severed heads sent as legal documents, the models who nearly died for the calm on the surface. Each one hangs at its true relative size, with the detail nobody tells you marked on the canvas.</p>
-</div>
-</div>
 </div>
 <div id="corridorwrap"><div id="corridor"><div id="track"><div class="copy" data-copy="1" aria-hidden="true"><section class="room" data-room="1" style="background:#ECE9DF">
 <div class="roomhead"><span class="roomno">ROOM 1</span><h2>The Sea & The Sky</h2><span class="doorline">Door to <a href="#room-2" data-room="2">Room 2 — Gold & Theft</a></span></div>
@@ -499,7 +492,7 @@ footer b{color:var(--ink)} footer a{color:var(--green);font-weight:700}
 <div class="placards"><div class="placard" id="pl-museum"></div><div class="placard" id="pl-vault"></div></div>
 <article class="story" id="story"></article>
 <div class="nextdoor" id="nextdoor"></div>
-<button class="walkbtn" id="walkstart2" style="background:var(--green);color:var(--paper);border:none;padding:9px 18px;font-family:'Karla';font-weight:700;cursor:pointer;margin-top:18px">Restart The Walk</button>
+<button class="walkbtn" id="walkstart2" style="background:var(--green);color:var(--paper);border:none;padding:8px 21px;font-family:'Karla';font-weight:700;cursor:pointer;margin-top:21px">Restart The Walk</button>
 </div>
 </section>
 <div class="peek" id="peek"><img src="" alt=""><span></span></div>
